@@ -1,0 +1,35 @@
+version: "20"
+services:
+
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: fproduction2
+    networks:
+      - scd-project
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    container_name: back
+    networks:
+      - scd-project
+    
+
+networks:
+  scd-project:
+    driver: bridge
+
+    
+      
